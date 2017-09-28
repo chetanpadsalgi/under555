@@ -1,0 +1,260 @@
+<modification>
+	<id>Enable/Disable Multiple Categories for OpenCart 1.5.5+</id>
+	<version>1.0.2</version>
+	<vqmver>2.1.7</vqmver>
+	<author>garudacrafts</author>
+	<notes>Adds "Enable" and "Disable" button functionality to Category List on Admin Dashboard.  Fixes issue with admin categories as filed in GitHub issue #1454 (https://github.com/opencart/opencart/issues/1454). Clears cache on update so results show up instantly on website front-end.</notes>
+	
+	<file name="ControlAdminPanel/controller/catalog/category.php">
+		<operation>
+			<search position="before"><![CDATA[
+			$this->data['column_action']
+			]]></search>
+			<add><![CDATA[
+			$this->data['column_status'] = $this->language->get('column_status');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			$result['sort_order']
+			]]></search>
+			<add><![CDATA[
+			'status'  => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			$this->data['button_insert']
+			]]></search>
+			<add><![CDATA[
+			$this->data['text_enabled'] = $this->language->get('text_enabled');
+			$this->data['button_enable'] = $this->language->get('button_enable');
+			$this->data['button_disable'] = $this->language->get('button_disable');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			$this->data['insert']
+			]]></search>
+			<add><![CDATA[
+			$this->data['enable'] = $this->url->link('catalog/category/enable', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['disable'] = $this->url->link('catalog/category/disable', 'token=' . $this->session->data['token'], 'SSL');
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			function getList()
+			]]></search>
+			<add><![CDATA[
+			public function enable() {
+				  $this->load->language('catalog/category');
+				  
+				  $this->document->setTitle($this->language->get('heading_title'));
+				  
+				  $this->load->model('catalog/category');
+				  
+				  if (!$this->user->hasPermission('modify', 'catalog/category')) {
+					  $this->error['warning'] = $this->language->get('error_permission');
+				  } elseif (isset($this->request->post['selected'])) {
+					  $enabled_count = 0;
+					  
+					  foreach ($this->request->post['selected'] as $category_id) {
+						  $category_info = $this->model_catalog_category->getCategory($category_id);
+						  
+						  if ($category_info && !$category_info['status']) {
+							  $this->model_catalog_category->enableCategory($category_id);
+							  
+							  $enabled_count++;
+						  }
+					  } 
+					  
+					  $this->session->data['success'] = sprintf($this->language->get('text_category_enabled'), $enabled_count);
+									
+					  $this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL'));			
+				  }
+				  
+				  $this->getList();
+			  }
+
+			public function disable() {
+				  $this->load->language('catalog/category');
+				  
+				  $this->document->setTitle($this->language->get('heading_title'));
+				  
+				  $this->load->model('catalog/category');
+				  
+				  if (!$this->user->hasPermission('modify', 'catalog/category')) {
+					  $this->error['warning'] = $this->language->get('error_permission');
+				  } elseif (isset($this->request->post['selected'])) {
+					  $disabled_count = 0;
+					  
+					  foreach ($this->request->post['selected'] as $category_id) {
+						  $category_info = $this->model_catalog_category->getCategory($category_id);
+						  
+						  if ($category_info && $category_info['status']) {
+							  $this->model_catalog_category->disableCategory($category_id);
+							  
+							  $disabled_count++;
+						  }
+					  } 
+					  
+					  $this->session->data['success'] = sprintf($this->language->get('text_category_disabled'), $disabled_count);
+									
+					  $this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL'));			
+				  }
+				  
+				  $this->getList();
+			  }
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="ControlAdminPanel/language/english/catalog/category.php">
+		<operation>
+			<search position="before"><![CDATA[
+			$_['text_success']
+			]]></search>
+			<add><![CDATA[
+			$_['column_status']           	= 'Status';
+			$_['text_category_enabled']       = 'You have enabled %s categories!';
+			$_['text_category_disabled']       = 'You have disabled %s categories!';
+			$_['button_enable']			= 'Enable';
+			$_['button_disable']			= 'Disable';
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="ControlAdminPanel/model/catalog/category.php">
+		<operation>
+			<search position="replace"><![CDATA[
+			function getCategories($data)
+			]]></search>
+			<add><![CDATA[
+			function getCategoriesBackup($data)
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			function getCategory(
+			]]></search>
+			<add><![CDATA[
+			public function getCategories($data) {
+				$sql = "SELECT cp.category_id AS category_id, c1.status AS status,
+				GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR ' &gt; ') AS name, 
+				GROUP_CONCAT(LPAD(c2.sort_order,10,'0') ORDER BY cp.level) AS sort_orders, 
+				c1.parent_id, 
+				c1.sort_order
+				FROM " . DB_PREFIX . "category_path cp 
+				LEFT JOIN " . DB_PREFIX . "category c1 ON (cp.category_id = c1.category_id) 
+				LEFT JOIN " . DB_PREFIX . "category c2 ON (cp.path_id = c2.category_id)
+				LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) 
+				LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) 
+				WHERE cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' 
+				AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+				if (!empty($data['filter_name'])) {
+					$sql .= " AND cd2.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+				}
+				
+				$sql .= " GROUP BY cp.category_id";
+
+				$sort_data = array(
+					'name',
+					'status',
+					'sort_orders'
+				);	
+
+				if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+					$sql .= " ORDER BY " . $data['sort'];	
+				} else {
+					$sql .= " ORDER BY name";	
+				}
+
+				if (isset($data['order']) && ($data['order'] == 'DESC')) {
+					$sql .= " DESC";
+				} else {
+					$sql .= " ASC";
+				}
+
+				if (isset($data['start']) || isset($data['limit'])) {
+					if ($data['start'] < 0) {
+						$data['start'] = 0;
+					}				
+
+					if ($data['limit'] < 1) {
+						$data['limit'] = 20;
+					}	
+
+					$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+				}
+
+				$query = $this->db->query($sql);
+
+				return $query->rows;
+			}
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			function addCategory
+			]]></search>
+			<add><![CDATA[
+			public function enableCategory($category_id) {
+				$category_info = $this->getCategory($category_id);
+		
+				if ($category_id) {
+					$this->db->query("UPDATE " . DB_PREFIX . "category SET status = '1' WHERE category_id = '" . (int)$category_id . "'");
+				}
+
+				$this->cache->delete('category');
+			}
+
+			public function disableCategory($category_id) {
+				$category_info = $this->getCategory($category_id);
+		
+				if ($category_id) {
+					$this->db->query("UPDATE " . DB_PREFIX . "category SET status = '0' WHERE category_id = '" . (int)$category_id . "'");
+				}
+
+				$this->cache->delete('category');
+			}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="ControlAdminPanel/view/template/catalog/category_list.tpl">
+		<operation>
+			<search position="replace"><![CDATA[
+			<div class="buttons">
+			]]></search>
+			<add><![CDATA[
+			<div class="buttons"><a onclick="$('form').attr('action', '<?php echo $enable; ?>'); $('form').submit();" class="button" style="background:#8EC74B;"><?php echo $button_enable; ?></a> <a onclick="$('form').attr('action', '<?php echo $disable; ?>'); $('form').submit();" class="button" style="background:#DC313E;"><?php echo $button_disable; ?></a>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			<?php echo $column_action; ?>
+			]]></search>
+			<add><![CDATA[
+			<td class="left"><?php echo $column_status; ?></td>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[
+			$category['action']
+			]]></search>
+			<add><![CDATA[
+			<td class="left" style="color:#FFF;font-weight:bold;background:<?php echo ($category['status'] == $text_enabled ? '#8EC74B' : '#DC313E'); ?>;"><?php echo $category['status']; ?></td>
+			]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[
+			colspan="4"
+			]]></search>
+			<add><![CDATA[
+			colspan="5"
+			]]></add>
+		</operation>
+	</file>
+	
+</modification>

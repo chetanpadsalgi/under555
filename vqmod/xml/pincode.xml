@@ -1,0 +1,185 @@
+<modification>
+	<id>Pincode</id>
+	<vqmver>2.X</vqmver>
+	<file name="ControlAdminPanel/view/template/common/header.tpl">
+		<operation>
+			<search position="before"><![CDATA[<ul class="right" style="display: none;">]]></search>
+			<add><![CDATA[ 
+				<ul>
+				  <li id="help" ><a class="top"><font color = 'white'>Pincode</font></a>
+					<ul>
+					  <li><a href = "?route=common/pincode&token=<?php echo $this->request->get['token']?>&addpin=1">Add Pincode</a></li>
+					  <li><a href = "?route=common/pincode&token=<?php echo $this->request->get['token']?>&allpin=1">All Pincode</a></li>
+					 <li><a href = "?route=common/pincode&token=<?php echo $this->request->get['token']?>&setting=1">Setting</a></li>
+					  <!--<li><a href = "?route=common/pincode&token=<?php echo $this->request->get['token']?>&support=1">Support</a></li>-->
+					 </ul>
+				  </li>
+				</ul>
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/shipping_address.php">
+		<operation>
+			<search position="before"><![CDATA[if ($this->request->post['country_id'] == '') {]]></search>
+			<add><![CDATA[ 
+					$this->load->model('catalog/pincode');
+					$pincode = $this->request->request['postcode'];
+					$_SESSION['shipping_pincode'] = $pincode;
+					$pin = $this->model_catalog_pincode->checkPincode($pincode);
+					$checkout_status = $this->config->get('pincode_checkout_status');
+					if($checkout_status == 1){
+						if($pin == 0){
+							$json['error']['postcode'] = "Service is not Available at your location yet";
+						}
+					}
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[$this->data['addresses'] = $this->model_account_address->getAddresses();]]></search>
+			<add><![CDATA[ 
+				$this->data['addresses'] = array();
+				$address = $this->model_account_address->getAddresses();
+				$this->load->model('catalog/pincode');
+				$checkout_status = $this->config->get('pincode_checkout_status');
+				if($checkout_status == 1){
+					foreach($address as $addres){
+						$pin = $this->model_catalog_pincode->checkPincode($addres['postcode']);
+						if($pin != 0){
+							$address_send[] = $addres;
+							$this->data['addresses'] = $address_send;
+						}
+					}
+				}
+				else{
+					$this->data['addresses'] = $this->model_account_address->getAddresses();
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/guest_shipping.php">
+		<operation>
+			<search position="before"><![CDATA[if ($this->request->post['country_id'] == '') {]]></search>
+			<add><![CDATA[ 
+					$this->load->model('catalog/pincode');
+					$pincode = $this->request->request['postcode'];
+					$_SESSION['shipping_pincode'] = $pincode;
+					$pin = $this->model_catalog_pincode->checkPincode($pincode);
+					$checkout_status = $this->config->get('pincode_checkout_status');
+					if($checkout_status == 1){
+						if($pin == 0){
+							$json['error']['postcode'] = "Service is not Available at your location yet";
+						}
+					}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/payment_address.php">
+		<operation>
+			<search position="before"><![CDATA[$this->load->helper('vat');]]></search>
+			<add><![CDATA[ 
+					$this->load->model('catalog/pincode');
+					$pincode = $this->request->request['postcode'];
+					$_SESSION['shipping_pincode'] = $pincode;
+					$pin = $this->model_catalog_pincode->checkPincode($pincode);
+					$checkout_status = $this->config->get('pincode_checkout_status');
+					if($checkout_status == 1){
+						if($pin == 0){
+							$json['error']['postcode'] = "Service is not Available at your location yet";
+						}
+					}
+			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="replace"><![CDATA[$this->data['addresses'] = $this->model_account_address->getAddresses();]]></search>
+			<add><![CDATA[ 
+				$address = $this->model_account_address->getAddresses();
+				$this->load->model('catalog/pincode');
+				$checkout_status = $this->config->get('pincode_checkout_status');
+				if($checkout_status == 1){
+					foreach($address as $addres){
+						$pin = $this->model_catalog_pincode->checkPincode($addres['postcode']);
+						if($pin != 0){
+							$address_send[] = $addres;
+							$this->data['addresses'] = $address_send;
+						}
+					}
+				}
+				else{
+					$this->data['addresses'] = $this->model_account_address->getAddresses();
+				}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/guest.php">
+		<operation>
+			<search position="before"><![CDATA[$this->load->helper('vat');]]></search>
+			<add><![CDATA[ 
+					$this->load->model('catalog/pincode');
+					$pincode = $this->request->request['postcode'];
+					$_SESSION['shipping_pincode'] = $pincode;
+					$pin = $this->model_catalog_pincode->checkPincode($pincode);
+					$checkout_status = $this->config->get('pincode_checkout_status');
+					if($checkout_status == 1){
+						if($pin == 0){
+							$json['error']['postcode'] = "Service is not Available at your location yet";
+						}
+					}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/payment_method.php">
+		<operation>
+			<search position="after"><![CDATA[$this->load->model('payment/' . $result['code']);]]></search>
+			<add><![CDATA[ 
+					$onjection = 0;
+					$this->load->model('catalog/pincode');
+					if(isset($_SESSION['shipping_pincode'])){
+						$pincode = $_SESSION['shipping_pincode'];
+						$pin = $this->model_catalog_pincode->checkPincode($pincode);
+						if($pin == 0){
+							$onjection = 1;
+						} else {
+                            			$onjection = 0;
+                                                }
+					}
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/payment_method.php">
+		<operation>
+			<search position="replace"><![CDATA[$method = $this->{'model_payment_' . $result['code']}->getMethod($payment_address, $total);]]></search>
+			<add><![CDATA[ 
+					if($result['code'] == 'cod'){
+						$method = $this->{'model_payment_' . $result['code']}->getMethod($payment_address, $total,$onjection);
+					}
+					else{
+						$method = $this->{'model_payment_' . $result['code']}->getMethod($payment_address, $total);
+					}
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="catalog/model/payment/cod.php">
+		<operation>
+			<search position="replace"><![CDATA[public function getMethod($address, $total) {]]></search>
+			<add><![CDATA[ 
+					public function getMethod($address, $total,$onjection) {
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/model/payment/cod.php">
+		<operation>
+			<search position="before"><![CDATA[$method_data = array();]]></search>
+			<add><![CDATA[ 
+					if($onjection == 1){
+                                            $status = false;
+					} else {
+                                            $status = true;
+                                        }
+			]]></add>
+		</operation>
+	</file>
+	 
+</modification>

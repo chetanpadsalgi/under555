@@ -1,0 +1,34 @@
+[04-Mar-2015 11:25:23 America/Denver] PHP Fatal error:  Uncaught exception 'ErrorException' with message 'Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/'' in /home/underfi2/public_html/demo/system/database/mysqli.php:41
+Stack trace:
+#0 /home/underfi2/public_html/demo/vqmod/vqcache/vq2-system_library_db.php(20): DBMySQLi->query('SELECT * FROM r...')
+#1 /home/underfi2/public_html/demo/index.php(51): DB->query('SELECT * FROM r...')
+#2 {main}
+  thrown in /home/underfi2/public_html/demo/system/database/mysqli.php on line 41
+[04-Mar-2015 11:25:26 America/Denver] PHP Fatal error:  Uncaught exception 'ErrorException' with message 'Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/'' in /home/underfi2/public_html/demo/system/database/mysqli.php:41
+Stack trace:
+#0 /home/underfi2/public_html/demo/vqmod/vqcache/vq2-system_library_db.php(20): DBMySQLi->query('SELECT * FROM r...')
+#1 /home/underfi2/public_html/demo/index.php(51): DB->query('SELECT * FROM r...')
+#2 {main}
+  thrown in /home/underfi2/public_html/demo/system/database/mysqli.php on line 41
+[04-Mar-2015 11:25:26 America/Denver] PHP Fatal error:  Uncaught exception 'ErrorException' with message 'Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/'' in /home/underfi2/public_html/demo/system/database/mysqli.php:41
+Stack trace:
+#0 /home/underfi2/public_html/demo/vqmod/vqcache/vq2-system_library_db.php(20): DBMySQLi->query('SELECT * FROM r...')
+#1 /home/underfi2/public_html/demo/index.php(51): DB->query('SELECT * FROM r...')
+#2 {main}
+  thrown in /home/underfi2/public_html/demo/system/database/mysqli.php on line 41
+[04-Mar-2015 11:25:27 America/Denver] PHP Fatal error:  Uncaught exception 'ErrorException' with message 'Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/'' in /home/underfi2/public_html/demo/system/database/mysqli.php:41
+Stack trace:
+#0 /home/underfi2/public_html/demo/vqmod/vqcache/vq2-system_library_db.php(20): DBMySQLi->query('SELECT * FROM r...')
+#1 /home/underfi2/public_html/demo/index.php(51): DB->query('SELECT * FROM r...')
+#2 {main}
+  thrown in /home/underfi2/public_html/demo/system/database/mysqli.php on line 41
+[04-Mar-2015 11:25:27 America/Denver] PHP Fatal error:  Uncaught exception 'ErrorException' with message 'Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/'' in /home/underfi2/public_html/demo/system/database/mysqli.php:41
+Stack trace:
+#0 /home/underfi2/public_html/demo/vqmod/vqcache/vq2-system_library_db.php(20): DBMySQLi->query('SELECT * FROM r...')
+#1 /home/underfi2/public_html/demo/index.php(51): DB->query('SELECT * FROM r...')
+#2 {main}
+  thrown in /home/underfi2/public_html/demo/system/database/mysqli.php on line 41
+[04-Mar-2015 11:25:48 America/Denver] PHP Notice:  Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/' in /home/underfi2/public_html/demo/system/database/mysql.php on line 50
+[04-Mar-2015 11:25:50 America/Denver] PHP Notice:  Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/' in /home/underfi2/public_html/demo/system/database/mysql.php on line 50
+[04-Mar-2015 11:25:51 America/Denver] PHP Notice:  Error: Table 'underfi2_under555live.res_store' doesn't exist<br />Error No: 1146<br />SELECT * FROM res_store WHERE REPLACE(`url`, 'www.', '') = 'http://under555.com/demo/' in /home/underfi2/public_html/demo/system/database/mysql.php on line 50
+[17-Mar-2015 06:06:00 America/Denver] PHP Notice:  Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's-Grooming'' at line 1<br />Error No: 1064<br />INSERT INTO res_url_alias SET query = 'category_id=113', `keyword` = 'Men's-Grooming' in /home/underfi2/public_html/demo/system/database/mysql.php on line 50

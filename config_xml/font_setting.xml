@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items_setting>
+	<general>
+		<item>
+			<frontend>true</frontend>
+			<text>General Fonts</text>
+			<style>g_fstyle</style>
+			<size>g_fsize</size>
+			<weight>g_fweight</weight>
+			<transform>g_ftrans</transform>
+			<class_name>a,body,input,textarea,select,.static_column .description p,.feature_content .description p,#boss-login ul li.login-li .dropdown-menu,#boss-login ul li.login-li .dropdown-menu a,small, .small,#cart .minicart_total tr td</class_name>
+		</item>
+		<item>
+			<frontend>true</frontend>
+			<text>Button</text>
+			<style>g_addcart_fstyle</style>
+			<size>g_addcart_fsize</size>
+			<weight>g_addcart_fweight</weight>
+			<transform>g_addcart_ftrans</transform>
+			<class_name>.btn</class_name>
+		</item>
+	</general>
+	<header>
+		<item>
+			<frontend>true</frontend>
+			<text>Header Fonts 1</text>
+			<style>h_fstyle_1</style>
+			<size>h_fsize_1</size>
+			<weight>h_fweight_1</weight>
+			<transform>h_ftrans_1</transform>
+			<class_name>header,#cart h4,header a</class_name>
+		</item>		
+	</header>
+	<footer>
+		<item>
+			<frontend>true</frontend>
+			<text>Footer Fonts 1</text>
+			<style>f_fstyle_1</style>
+			<size>f_fsize_1</size>
+			<weight>f_fweight_1</weight>
+			<transform>f_ftrans_1</transform>
+			<class_name>footer .column h3</class_name>
+		</item>
+		<item>
+			<frontend>true</frontend>
+			<text>Footer Fonts 2</text>
+			<style>f_fstyle_2</style>
+			<size>f_fsize_2</size>
+			<weight>f_fweight_2</weight>
+			<transform>f_ftrans_2</transform>
+			<class_name>.footer_column ul li a,.footer-about p, .footer-contact p,.powered p</class_name>
+		</item>
+	</footer>
+	<menu>
+		<item>
+			<frontend>true</frontend>
+			<text>Menu Fonts 1</text>
+			<style>m_fstyle_1</style>
+			<size>m_fsize_1</size>
+			<weight>m_fweight_1</weight>
+			<transform>m_ftrans_1</transform>
+			<class_name>.boss-menu .menu_item > a, .boss-menu .navbar-nav > li > a,.navbar-header b</class_name>
+		</item>
+		<item>
+			<frontend>false</frontend>
+			<text>Menu Fonts 2</text>
+			<style>m_fstyle_2</style>
+			<size>m_fsize_2</size>
+			<weight>m_fweight_2</weight>
+			<transform>m_ftrans_2</transform>
+			<class_name>.dropdown-menu-inner .option a.parent, .dropdown-menu-inner .option p.parent,.dropdown-menu-inner .staticblock .menu-block-main span, .dropdown-menu-inner .option .staticblock .parent</class_name>
+		</item>
+		<item>
+			<frontend>false</frontend>
+			<text>Menu Fonts 3</text>
+			<style>m_fstyle_3</style>
+			<size>m_fsize_3</size>
+			<weight>m_fweight_3</weight>
+			<transform>m_ftrans_3</transform>
+			<class_name>.dropdown-menu-inner .option ul.category li a, .dropdown-menu-inner .option .staticblock p, .sub_menu_default ul li a, .dropdown-menu-inner .option ul.information li a</class_name>
+		</item>
+	</menu>
+	<product>
+		<item>
+			<frontend>true</frontend>
+			<text>Product Name</text>
+			<style>p_name_fstyle</style>
+			<size>p_name_fsize</size>
+			<weight>p_name_fweight</weight>
+			<transform>p_name_ftrans</transform>
+			<class_name>.name > a, .article-name a, .box .article-title, .box .comment-title</class_name>
+		</item>
+		<item>
+			<frontend>false</frontend>
+			<text>Product Description</text>
+			<style>p_des_fstyle</style>
+			<size>p_des_fsize</size>
+			<weight>p_des_fweight</weight>
+			<transform>p_des_ftrans</transform>
+			<class_name>.description p</class_name>
+		</item>
+		<item>
+			<frontend>false</frontend>
+			<text>Product Price</text>
+			<style>p_price_fstyle</style>
+			<size>p_price_fsize</size>
+			<weight>p_price_fweight</weight>
+			<transform>p_price_ftrans</transform>
+			<class_name>.price</class_name>
+		</item>
+	</product>
+	<title>
+		<item>
+			<frontend>true</frontend>
+			<text>Page Title</text>
+			<style>t_page_fstyle</style>
+			<size>t_page_fsize</size>
+			<weight>t_page_fweight</weight>
+			<transform>t_page_ftrans</transform>
+			<class_name>h1</class_name>
+		</item>
+		<item>
+			<frontend>true</frontend>
+			<text>Block Title</text>
+			<style>t_block_fstyle</style>
+			<size>t_block_fsize</size>
+			<weight>t_block_fweight</weight>
+			<transform>t_block_ftrans</transform>
+			<class_name>.box .box-heading</class_name>
+		</item>
+		<item>
+			<frontend>false</frontend>
+			<text>Breadcrumb</text>
+			<style>t_bread_fstyle</style>
+			<size>t_bread_fsize</size>
+			<weight>t_bread_fweight</weight>
+			<transform>t_bread_ftrans</transform>
+			<class_name>.breadcrumb a</class_name>
+		</item>
+	</title>
+</items_setting>

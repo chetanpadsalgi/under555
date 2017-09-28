@@ -1,0 +1,22 @@
+---------- Date: 2015-03-19 13:08:45 ~ IP : 223.196.62.49 ----------
+REQUEST URI : /demo/ControlAdminPanel/?route=common/pincode&amp;token=19ff47d063c3e5b68b5e2536db1f922d&amp;setting=1
+MOD DETAILS:
+   modFile   : /home/underfi2/public_html/demo/vqmod/xml/manufacturedescription for 1.5.6.X.xml
+   id        : Manufacture Images in admin and Frontend 
+   version   : 3.2
+   vqmver    : 2.4.1
+   author    : codertj - info@codertj.com  
+VQModObject::parseMods - Could not resolve path for [admin/view/template/catalog/manufacturer_list.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/catalog/manufacturer.php] (SKIPPED)
+
+MOD DETAILS:
+   modFile   : /home/underfi2/public_html/demo/vqmod/xml/vqmm_menu_shortcut.xml
+   id        : VQMod Manager Menu Shortcut
+   version   : 1.0.0
+   vqmver    : 2.3.0
+   author    : Ryan (rph) - OpenCartHelp.com
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/header.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/header.tpl] (SKIPPED)
+----------------------------------------------------------------------
+
+

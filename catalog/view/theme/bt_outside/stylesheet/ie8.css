@@ -1,0 +1,56 @@
+#search input[type="text"], #m-search input[type="text"]{
+	
+	line-height:33px;
+	padding-right:10px;
+	overflow:hidden;
+}
+.button-search{
+	left:0;
+}
+input[type="text"], input[type="password"]{
+	line-height:21px;
+}
+
+
+a.sft_quickshop_icon{
+	display:none;
+}
+.image:hover a.sft_quickshop_icon{
+	display:block;
+}
+
+.cart_content table.radio tr td{
+	float:left;
+}
+.accordion_content li select{
+	height:32px!important;
+	padding-bottom:8px!important;
+	line-height:32px!important;
+}
+.btn-cart{
+	border-top:1px solid #cacaca
+}
+.btn-cart:hover{
+	border-top:1px solid #90280A
+}
+.btn-cart{
+	background:#f4f4f4;
+}
+.btn-cart:hover{
+	background:#ac3816;
+}
+.btn-dropdown-cart{
+	display:block!important;
+}
+#megamenu.navbar{border-top:none}
+
+/*********/
+
+
+
+
+
+
+
+
+

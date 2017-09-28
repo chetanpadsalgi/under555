@@ -1,0 +1,40 @@
+---------- Date: 2015-04-11 15:08:53 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /under555/
+MOD DETAILS:
+   modFile   : D:\xampp\htdocs\under555\vqmod/xml/export.xml
+   id        : Export/Import Tool - OpenCart 1.5.5.x core file modifications
+   version   : 1.5.5.x-1-18
+   vqmver    : 2.4.1
+   author    : mhccorp.com
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/header.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/english/common/header.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/header.tpl] (SKIPPED)
+
+MOD DETAILS:
+   modFile   : D:\xampp\htdocs\under555\vqmod/xml/get_the_product_from_flipkart.xml
+   id        : Get the product from Flipkart
+   version   : 1.5.2.1
+   vqmver    : 2.1.5
+   author    : http://opencarting.com
+VQModObject::parseMods - Could not resolve path for [admin/controller/catalog/product.php] (SKIPPED)
+
+MOD DETAILS:
+   modFile   : D:\xampp\htdocs\under555\vqmod/xml/manufacturedescription for 1.5.6.X.xml
+   id        : Manufacture Images in admin and Frontend 
+   version   : 3.2
+   vqmver    : 2.4.1
+   author    : codertj - info@codertj.com  
+VQModObject::parseMods - Could not resolve path for [admin/view/template/catalog/manufacturer_list.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/catalog/manufacturer.php] (SKIPPED)
+
+MOD DETAILS:
+   modFile   : D:\xampp\htdocs\under555\vqmod/xml/vqmm_menu_shortcut.xml
+   id        : VQMod Manager Menu Shortcut
+   version   : 1.0.0
+   vqmver    : 2.3.0
+   author    : Ryan (rph) - OpenCartHelp.com
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/header.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/header.tpl] (SKIPPED)
+----------------------------------------------------------------------
+
+
